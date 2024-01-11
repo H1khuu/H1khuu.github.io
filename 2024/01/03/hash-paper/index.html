@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hash paper | hikhuu&#39;s blog</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="密码学完整性算法——密码学哈希函数摘要哈希函数H使用变长数据分组M作为输入，生成定长结果为h&#x3D;H(M)，这一结果称为哈希值或哈希码。当输入大数据集合时，输出是均匀分布且随机的，且M的任一位或几位改变，会极大影响其哈希值。 安全领域使用的哈希函数称为密码学哈希函数。密码学哈希函数具有单向性（找不到一个映射为某个哈希结果的数据对象）和抗碰撞性（找不到两个映射为相同哈希结果的数据对象），因为输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hash paper">
+<meta property="og:url" content="http://example.com/2024/01/03/hash-paper/index.html">
+<meta property="og:site_name" content="hikhuu&#39;s blog">
+<meta property="og:description" content="密码学完整性算法——密码学哈希函数摘要哈希函数H使用变长数据分组M作为输入，生成定长结果为h&#x3D;H(M)，这一结果称为哈希值或哈希码。当输入大数据集合时，输出是均匀分布且随机的，且M的任一位或几位改变，会极大影响其哈希值。 安全领域使用的哈希函数称为密码学哈希函数。密码学哈希函数具有单向性（找不到一个映射为某个哈希结果的数据对象）和抗碰撞性（找不到两个映射为相同哈希结果的数据对象），因为输">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-03T14:50:53.000Z">
+<meta property="article:modified_time" content="2024-01-03T15:36:20.300Z">
+<meta property="article:author" content="hikhuu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="hikhuu&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">hikhuu</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="/null">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">I&#39;m hikhuu.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-hash-paper" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/01/03/hash-paper/" class="article-date">
+  	<time datetime="2024-01-03T14:50:53.000Z" itemprop="datePublished">2024-01-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hash paper
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="密码学完整性算法——密码学哈希函数"><a href="#密码学完整性算法——密码学哈希函数" class="headerlink" title="密码学完整性算法——密码学哈希函数"></a>密码学完整性算法——密码学哈希函数</h4><h5 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h5><p>哈希函数H使用变长数据分组M作为输入，生成定长结果为h&#x3D;H(M)，这一结果称为哈希值或哈希码。当输入大数据集合时，输出是均匀分布且随机的，且M的任一位或几位改变，会极大影响其哈希值。</p>
+<p>安全领域使用的哈希函数称为密码学哈希函数。密码学哈希函数具有单向性（找不到一个映射为某个哈希结果的数据对象）和抗碰撞性（找不到两个映射为相同哈希结果的数据对象），因为输入被填充到某固定长度（如1024）的整数倍，填充信息长度是一个安全度量，所以哈希算法可用于判断数据是否被篡改。总的来说，哈希函数的主要目标是保证数据的完整性。</p>
+<p>本文主要论述密码学哈希函数的广泛应用，介绍一个简单的哈希函数和轻量级哈希函数。</p>
+<h5 id="关键词：密码学哈希函数，数据完整性，加密，轻量级"><a href="#关键词：密码学哈希函数，数据完整性，加密，轻量级" class="headerlink" title="关键词：密码学哈希函数，数据完整性，加密，轻量级"></a>关键词：密码学哈希函数，数据完整性，加密，轻量级</h5><h5 id="密码学哈希函数的广泛应用"><a href="#密码学哈希函数的广泛应用" class="headerlink" title="密码学哈希函数的广泛应用"></a>密码学哈希函数的广泛应用</h5><p>密码学哈希函数可以说是用途最广泛的密码算法，已被广泛应用于各种安全应用和网络协议中，为了更好地理解密码学哈希函数的安全要求和含义，下面先举几个应用实例。</p>
+<h5 id="1-消息认证。"><a href="#1-消息认证。" class="headerlink" title="1.消息认证。"></a>1.消息认证。</h5><p>消息认证用于验证消息完整性，可确保收到的数据和发送时一致，即没有被插入，删除或替换。当哈希函数用于提供消息认证功能时，哈希函数值通常称为信息摘要。</p>
+<p>发送方使用哈希函数对待发送消息计算一个哈希值，然后将待发送消息与哈希值一起发送；接收方收到后，对消息执行相同的哈希计算，并将结果与收到的哈希值进行比较。若匹配，则接收方推断消息未被篡改。</p>
+<p>重要的一点是，必须已安全的方式传输哈希值，也就是说，必须保护哈希值，使得攻击方在更改信息时不能轻易地通过修改哈希值来欺骗接收方。此时，可以使用对称密码算法E加密待发送消息和其哈希值（若要降低加解密运营开销，可只加密哈希值）。也可以设定通信双方共享的秘密值S，将消息M与秘密值S连接再计算哈希值，并将哈希值附在消息M后发送，接收方可通过共享的秘密值S重新计算哈希值来判断消息是否被篡改。因为秘密值S本身未被发送，攻击方截获消息后无法修改，也无法生成假消息。</p>
+<p>消息认证更常使用消息认证码（MAC）实现，也称带密钥的哈希函数。MAC函数将密钥K与数据分组H(M)作为输入，生成一个哈希值(MAC)，也就是E（K，H（M）），它是一个定长输出，在不知道密钥的情况下，攻击方无法篡改关联的MAC值，因此它是安全的。</p>
+<h5 id="2-数字签名。"><a href="#2-数字签名。" class="headerlink" title="2.数字签名。"></a>2.数字签名。</h5><p>数字签名的操作类似于MAC,它是使用用户的私钥加密消息的哈希值，即拿到用户公钥即可验证该数字签名关联的消息的完整性。下图简述了哈希码提供数字签名的方式。</p>
+<p>（a）使用公钥加密算法和用户私钥加密哈希码，只有发送方可以生成加密后的哈希码，所以这种方式还提供数字签名。</p>
+<p>（b）使用一个对称密钥加密消息和私钥加密后的哈希值，这种方式既能提供保密性也能提供数字签名。</p>
+<h5 id="3-单向口令文件"><a href="#3-单向口令文件" class="headerlink" title="3.单向口令文件"></a>3.单向口令文件</h5><p>操作系统储存口令的哈希值而不储存口令，通过计算用户输入的口令的哈希值，和口令文件比对。这样，即使攻击者能够访问口令文件，也不能获取真正的口令，现在大多数操作系统都使用这样的口令保护机制。</p>
+<h5 id="一个简单的哈希函数"><a href="#一个简单的哈希函数" class="headerlink" title="一个简单的哈希函数"></a>一个简单的哈希函数</h5><p>所有的哈希函数都按一般原理进行操作：将输入视为一系列n位分组，一次处理输入中的一个分组，迭代直至生成一个n位哈希函数。</p>
+<p>最简单的一种是将每个分组按位异或（XOR），表示为<strong>Ci&#x3D;bi1⊕bi2⊕…⊕bim</strong></p>
+<p>其中⊕表示按位异或运算；1&lt;&#x3D;i&lt;&#x3D;n，i表示哈希码的第i位；m表示n位分组数量；因此bij表示第j个分组中的第i位。</p>
+<p>这种方法对随机数据的完整性的检验非常有效，因为每个n位哈希值出现的概率是相同的。但数据为非随机时，需要进行简单改进，消除输入中出现的任何规律性，使数据“随机化”输入。一种改进方式是，处理完一个分组，就将哈希值旋转一位或循环移动一位，过程如下：</p>
+<p>1.将n位哈希值设为0.</p>
+<p>2.按如下方式处理每个分组：</p>
+<p>A．当前哈希值循环左移一位</p>
+<p>B．该分组与哈希值异或</p>
+<p>美国国家标准局最初提出，对64位的分组执行简单异或运算，并且使用密文分组连接（CBC）加密整个消息。消息M由一系列64位分组X1,X2,…,XN组成，其哈希码h&#x3D;H（M）定义为所有分组的异或，并将该哈希码作为最后一个分组</p>
+<p><strong>H&#x3D;X(N+1)&#x3D;X1⊕X2⊕…⊕X(N)</strong></p>
+<p>接着使用CBC加密消息和哈希码，得加密后的消息Y1,Y2,…,Y（N）</p>
+<p>这种异或运算可以按任意顺序执行，即改变分组顺序，哈希码不变。</p>
+<h5 id="轻量级哈希函数"><a href="#轻量级哈希函数" class="headerlink" title="轻量级哈希函数"></a>轻量级哈希函数</h5><p>传统哈希函数可能无法在资源受限的设备上实现。轻量级哈希函数对于不需要使用抗碰撞性的哈希函数，可以使用较小的内部状态和输出长度，且使用轻量级哈希函数的大多数目标协议中，输入长度通常小得多（不超过256位）。</p>
+<p>Photon是轻量级密码学哈希函数的一个例子，使用类似SHA-3的海绵结构，设计者认为它非常轻量级，接近于理论上的最优，因此它是许多文献中规定的哈希函数之一。</p>
+<h5 id="参考文献（乱写的）"><a href="#参考文献（乱写的）" class="headerlink" title="参考文献（乱写的）"></a>参考文献（乱写的）</h5><p>Ø William Stallings《Cryptography and Network Security Principles and Practice，Eighth Edition》</p>
+<p>Ø Jueneman,R“Electronic Document Authentication.”IEEE Network Magazine,April 1987</p>
+<p>Ø Guo,J.;Peyrin,T.;Poschmann,A.”The PHOTON Family of Lightweight Hash Functions.”31st Annual International Cryptology Conference(CRYPTO 2011),2011</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/04/A1ic3%E8%84%B1%E5%8D%95%E5%95%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          A1ic3脱单啦
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/27/zjnuctf-crypto-wp12.27v2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zjnuctf-crypto-writeup</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2024 hikhuu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
